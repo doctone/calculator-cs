@@ -8,20 +8,45 @@ namespace HelloWorld
         {
             WelcomeMessage();
             Operation();
+            OfferRepeat();
+        }
+
+        static void OfferRepeat()
+        {
+            Console.Write("Would you like to do another operation? Y/N: ");
+            string answer = Console.ReadLine();
+            if (answer == "Y")
+            {
+                Calculator.Operation();
+                Calculator.OfferRepeat();
+            }
+            else
+            {
+                Console.WriteLine("Thank you for using the calculator.");
+            }
+
+        }
+
+        static string GetInput()
+        {
+            string input = Console.ReadLine();
+            return input;
+
         }
 
         static void WelcomeMessage()
         {
             Console.WriteLine("=== Welcome to Calculator Land ===");
             Console.Write("What is your name? ");
-            string userName = Console.ReadLine();
+            string userName = GetInput();
             Console.WriteLine("Welcome, {0}. We hope you enjoy using your new Calculator", userName);
         }
+
 
         static void Operation()
         {
             Console.WriteLine("Choose an operation : +  -  *  /");
-            string operation = Console.ReadLine();
+            string operation = GetInput();
 
             Console.Write("How many numbers would you like to '{0}'?", operation);
             int numOfOperations = int.Parse(Console.ReadLine());
