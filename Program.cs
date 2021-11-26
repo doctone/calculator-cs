@@ -11,10 +11,70 @@ namespace HelloWorld
             OfferRepeat();
         }
 
+
+
+        static void WelcomeMessage()
+        {
+            Console.WriteLine("=== Welcome to Calculator Land ===");
+        }
+
+
+        static void Operation()
+        {
+            string operation = GetInput("Choose an operation : + - * /");
+
+            int numOfOperations = AskForNum("How many times would you like to perform this operation?");
+            int[] nums = new int[numOfOperations];
+            
+
+            for (int i = 0; i < numOfOperations; i++)
+            {
+                Console.Write("Please enter number {0}: ", i + 1);
+                nums[i] = int.Parse(Console.ReadLine());
+
+            }
+            int answer = nums[0];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (operation == "+")
+                {
+                    answer += nums[i];
+                }
+                if (operation == "-")
+                {
+                    answer -= nums[i];
+                }
+                if (operation == "/")
+                {
+                    answer /= nums[i];
+                }
+                if (operation == "*")
+                {
+                    answer *= nums[i];
+                }
+            }
+            Console.WriteLine(answer);
+        }
+        static int AskForNum(string message)
+        {
+            int count;
+
+            do
+            {
+                Console.Write(message);
+            } while (!int.TryParse(Console.ReadLine(), out count));
+
+            return count;
+        }
+        static string GetInput(string message)
+        {
+            Console.Write(message);
+            string input = Console.ReadLine();
+            return input;
+        }
         static void OfferRepeat()
         {
-            Console.Write("Would you like to do another operation? Y/N: ");
-            string answer = Console.ReadLine();
+            string answer = GetInput("Would you like to do another operation? Y/N: ");
             if (answer == "Y")
             {
                 Calculator.Operation();
@@ -25,96 +85,6 @@ namespace HelloWorld
                 Console.WriteLine("Thank you for using the calculator.");
             }
 
-        }
-
-        static string GetInput()
-        {
-            string input = Console.ReadLine();
-            return input;
-
-        }
-
-        static void WelcomeMessage()
-        {
-            Console.WriteLine("=== Welcome to Calculator Land ===");
-            Console.Write("What is your name? ");
-            string userName = GetInput();
-            Console.WriteLine("Welcome, {0}. We hope you enjoy using your new Calculator", userName);
-        }
-
-
-        static void Operation()
-        {
-            Console.WriteLine("Choose an operation : +  -  *  /");
-            string operation = GetInput();
-
-            Console.Write("How many numbers would you like to '{0}'?", operation);
-            int numOfOperations = int.Parse(Console.ReadLine());
-            int[] nums = new int[numOfOperations];
-            for (int i = 0; i < numOfOperations; i++)
-            {
-                Console.Write("Please enter number {0}: ", i + 1);
-                nums[i] = int.Parse(Console.ReadLine());
-
-            }
-
-            if (operation == "+")
-            {
-                Console.WriteLine(Add(nums));
-            }
-            if (operation == "-")
-            {
-                Console.WriteLine(Minus(nums));
-            }
-            if (operation == "/")
-            {
-                Console.WriteLine(Divide(nums));
-            }
-            if (operation == "*")
-            {
-                Console.WriteLine(Mult(nums));
-            }
-        }
-
-
-        static int Add(int[] arr)
-        {
-            int answer = arr[0];
-            for (int i = 1; i < arr.Length; i++)
-            {
-                answer += arr[i];
-            }
-            return answer;
-        }
-
-        static int Minus(int[] arr)
-        {
-            int answer = arr[0];
-            for (int i = 1; i < arr.Length; i++)
-            {
-                answer -= arr[i];
-            }
-            return answer;
-        }
-
-        static double Divide(int[] arr)
-        {
-            int answer = arr[0];
-            for (int i = 1; i < arr.Length; i++)
-            {
-                answer /= arr[i];
-            }
-            return answer;
-        }
-
-        static int Mult(int[] arr)
-        {
-            int answer = arr[0];
-            for (int i = 1; i < arr.Length; i++)
-            {
-                answer *= arr[i];
-            }
-            return answer;
         }
     }
     
