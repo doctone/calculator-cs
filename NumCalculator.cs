@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 namespace HelloWorld
 {
     public class NumCalculator
@@ -39,6 +40,21 @@ namespace HelloWorld
             }
             string finalAnswer = string.Format("The answer your looking for is {0}", answer);
             Console.WriteLine(finalAnswer);
+
+            string answerToLog = "";
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i == nums.Length-1)
+                {
+                    answerToLog += (nums[i] + "\n  = \n");
+                }
+                else
+                {
+                    answerToLog += (nums[i] + " " + operation + "\n");
+                }
+            }
+            answerToLog += answer;
+            Program.LogText(answerToLog);
         }
     }
 }
