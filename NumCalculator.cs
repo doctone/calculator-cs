@@ -54,7 +54,7 @@ namespace HelloWorld
                 }
             }
             answerToLog += answer;
-            Program.LogText(answerToLog);
+            Log.LogText(answerToLog);
         }
     }
 }
